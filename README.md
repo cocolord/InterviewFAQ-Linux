@@ -49,13 +49,22 @@ Linux
     -   top
         -   load average cpu
             里面的几个数字代表什么意思，怎么衡量，为什么
-            -   load average 50 算高还是低？怎么计算的？
-            -   系统在1，5，15分钟的平均工作负载，进程队列中的平均进程数量。
+            -   系统在1，5，15分钟的平均工作负载，是进程队列中的平均进程数量。
             -   一般不能大于系统逻辑CPU的个数
             -   /proc/loadavg
         -   关键参数
-            -   Task：僵尸进程的数量
+            -   Task：僵尸进程的数量(一个子进程exit之后变成僵尸进程，直到被父进程回收资源)
             -   CPU：%wa IOwait
+            ```
+           us, user    : time running un-niced user processes
+           sy, system  : time running kernel processes
+           ni, nice    : time running niced user processes
+           id, idle    : time spent in the kernel idle handler
+           wa, IO-wait : time waiting for I/O completion
+           hi : time spent servicing hardware interrupts
+           si : time spent servicing software interrupts
+           st : time stolen from this vm by the hypervisor
+            ```
             -   Mem：
             -   Swap：要尽可能的少用
     -   uptime
@@ -155,8 +164,8 @@ Linux
 
 ### 常见服务占用端口
 
--   80 8080 443
--   20 21 22 23 25 53
+-   80(http) 8080 443
+-   20 21(ftp) 22 23 25 53
 -   135（RPC）137（NetBIOS/UDP） 138（UDP） 139 （samba）
 -   161 SNMP
 -   1080 Socket代理
